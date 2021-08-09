@@ -1,0 +1,35 @@
+.blog_header {
+  font-family: "Poppins", sans-serif;
+  height: 75px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.blog_header > div {
+  display: inline-block;
+  zoom: 1;
+  width: 50%;
+  text-align: center;
+}
+
+.header_nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header_nav_buttons {
+  width: 90px;
+  padding: 5px 10px 5px 10px;
+  border: 2px solid rgb(51, 51, 51);
+  margin: 0px 10px 0px 10px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.header_nav_buttons:hover {
+  cursor: pointer;
+  background-color: rgb(241, 241, 241);
+  border-color: rgb(0, 0, 0);
+}

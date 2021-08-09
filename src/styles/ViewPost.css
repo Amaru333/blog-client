@@ -1,0 +1,25 @@
+.post_container {
+  font-family: "Poppins", sans-serif;
+  width: 50%;
+  margin: auto;
+  margin-top: 40px;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.author_name {
+  font-size: 18px;
+}
+
+.post_date {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.582);
+  margin-bottom: 30px;
+}
+
+img {
+  max-width: 50vw;
+  align-self: center;
+}
