@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/Header.css";
 import Logo from "../images/logo.png";
 
 import { AuthContext } from "../helpers/AuthContext";
 
 function Header() {
+  const [menu, setMenu] = useState(true);
   //Auth context
   const { authState, setAuthState } = useContext(AuthContext);
 
@@ -25,56 +26,79 @@ function Header() {
   return (
     <div className="blog_header">
       {/* Logo div */}
-      <div>
-        <a href="/">
-          <img src={Logo} alt="logo" />
+      <div style={{ width: "100px", marginLeft: "20vw", marginRight: "20vw" }}>
+        {/* <a href="/">
+          <img className="header_logo" src={Logo} alt="logo" />
+        </a> */}
+        <a style={{ textDecoration: "none", color: "inherit" }} href="/">
+          <p className="header_nav_buttons" style={{ margin: "auto" }}>
+            Home
+          </p>
         </a>
       </div>
 
       {/* Navigation div */}
-      {authState.status ? (
-        <div>
-          {/* Navigation div while logged in */}
-          <div className="header_nav">
-            <div style={{ alignSelf: "center", marginRight: "10px" }}>
-              <p>Hello,&nbsp; {authState.name}!</p>
+      <div className="nav_main">
+        <div
+          className="hamburger"
+          onClick={() => {
+            setMenu(!menu);
+          }}
+        >
+          <div className="lines"></div>
+          <div className="lines"></div>
+          <div className="lines"></div>
+        </div>
+        {authState.status ? (
+          <div>
+            {/* Navigation div while logged in */}
+            <div
+              className="header_nav"
+              style={menu === true ? { display: "flex" } : { display: "none" }}
+            >
+              <div style={{ alignSelf: "center", marginRight: "10px" }}>
+                <p>Hello,&nbsp; {authState.name}!</p>
+              </div>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="/write"
+              >
+                <p className="header_nav_buttons">Write</p>
+              </a>
+              <p className="header_nav_buttons" onClick={logout}>
+                Log out
+              </p>
             </div>
-            <a
-              style={{ textDecoration: "none", color: "inherit" }}
-              href="/write"
-            >
-              <p className="header_nav_buttons">Write</p>
-            </a>
-            <p className="header_nav_buttons" onClick={logout}>
-              Log out
-            </p>
           </div>
-        </div>
-      ) : (
-        <div>
-          {/* Navigation div while not logged in */}
-          <div className="header_nav">
-            <a
-              style={{ textDecoration: "none", color: "inherit" }}
-              href="/login"
+        ) : (
+          <div>
+            {/* Navigation div while not logged in */}
+            <div
+              className="header_nav"
+              style={menu === true ? { display: "block" } : { display: "none" }}
             >
-              <p className="header_nav_buttons">Sign In</p>{" "}
-            </a>
-            <a
-              style={{ textDecoration: "none", color: "inherit" }}
-              href="/signup"
-            >
-              <p className="header_nav_buttons">Sign Up</p>
-            </a>
-            <a
-              style={{ textDecoration: "none", color: "inherit" }}
-              href="/write"
-            >
-              <p className="header_nav_buttons">Write</p>
-            </a>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="/login"
+              >
+                <p className="header_nav_buttons">Sign In</p>{" "}
+              </a>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="/signup"
+              >
+                <p className="header_nav_buttons">Sign Up</p>
+              </a>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="/write"
+              >
+                <p className="header_nav_buttons">Write</p>
+              </a>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

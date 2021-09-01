@@ -3,29 +3,49 @@ import React from "react";
 //Comment icons
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 
-function HomePagePosts({ id, title, name, date, tags, thumbnail, comments }) {
+//CSS
+import "../styles/HomePagePost.css";
+
+//Like icons
+import FavoriteIcon from "@material-ui/icons/Favorite";
+
+function HomePagePosts({
+  id,
+  title,
+  name,
+  date,
+  tags,
+  thumbnail,
+  comments,
+  likes,
+  description,
+}) {
+  let des = "";
+  des = description.slice(3, 3 + description.slice(3).indexOf("<"));
   return (
-    <div
-      style={{
-        marginBottom: "40px",
-        padding: "10px",
-        borderBottom: "1px solid #DDDBDA",
-      }}
-    >
+    <div className="home_page_post">
       <a style={{ textDecoration: "none" }} href={`/article/${id}`}>
-        <div style={{ display: "flex", fontFamily: "Poppins" }}>
+        <div className="post_image_container">
           <div style={{ width: "70%" }}>
-            <h2>
+            <h2 className="home_page_title">
               <a style={{ textDecoration: "none" }} href={`/article/${id}`}>
                 {title}
               </a>
             </h2>
-            <p>
+            <p
+              style={{
+                fontSize: "12px",
+                color: "#303030",
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+            >
               <span>By&nbsp;</span>
               <b>{name}</b>
               <span>&nbsp;on&nbsp;</span>
               {date}
             </p>
+            <p>{des}</p>
             <div style={{ display: "flex", marginTop: "10px" }}>
               <p>Tags:&nbsp;</p>
               {tags.map((tag) => (
@@ -34,25 +54,42 @@ function HomePagePosts({ id, title, name, date, tags, thumbnail, comments }) {
                 </p>
               ))}
             </div>
-            <div
-              style={{
-                marginLeft: "10px",
-                display: "flex",
-                border: "1px solid black",
-                width: "70px",
-                padding: "5px",
-                placeContent: "space-around",
-                borderRadius: "5px",
-                height: "35px",
-                marginTop: "20px",
-              }}
-            >
-              <ChatBubbleOutlineIcon /> {comments.length}
+            <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  display: "flex",
+                  // border: "1px solid black",
+                  width: "70px",
+                  padding: "5px",
+                  placeContent: "space-around",
+                  // borderRadius: "5px",
+                  height: "35px",
+                  marginTop: "20px",
+                }}
+              >
+                <FavoriteIcon />
+                <p>{likes}</p>
+              </div>
+              <div
+                style={{
+                  marginLeft: "10px",
+                  display: "flex",
+                  // border: "1px solid black",
+                  width: "70px",
+                  padding: "5px",
+                  placeContent: "space-around",
+                  // borderRadius: "5px",
+                  height: "35px",
+                  marginTop: "20px",
+                }}
+              >
+                <ChatBubbleOutlineIcon /> {comments.length}
+              </div>
             </div>
           </div>
           <div>
             <img
-              style={{ width: "180px" }}
+              className="thumbnail_image"
               src={`https://blog-amaru.herokuapp.com/images/${thumbnail}`}
             />
           </div>

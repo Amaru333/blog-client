@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 
 //Share
-import { FacebookShareButton, FacebookIcon } from "react-share";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import FacebookIconUI from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
 //Context
 import { AuthContext } from "../helpers/AuthContext";
@@ -120,23 +122,29 @@ function ViewPost() {
     } else {
       let name = authState.name;
       return (
-        <div>
-          <h2>Add a comment</h2>
+        <div className="add_comment">
+          <p style={{ fontSize: "24px" }}>Add a comment</p>
+          <div className="gray_line"></div>
           <div style={{ display: "flex" }}>
-            <p>Posting as: </p>
+            <p style={{ padding: "0px 0px 10px 0px" }}>Posting as: </p>
             <p style={{ marginLeft: "5px" }}>{name}</p>
           </div>
           <div>
-            <p>Comment:</p>
             <textarea
               style={{ width: "100%", resize: "none", fontFamily: "Poppins" }}
               rows="8"
-              placeholder="Write your comment"
+              placeholder="What are your thoughts?"
+              className="comment_box"
               onChange={(e) => {
                 setComment(e.target.value);
               }}
             />
-            <button onClick={postComment}>Submit</button>
+            <button
+              onClick={postComment}
+              style={{ margin: "0px 0px 15px 0px" }}
+            >
+              Submit
+            </button>
           </div>
         </div>
       );
@@ -189,26 +197,43 @@ function ViewPost() {
             <ChatBubbleOutlineIcon /> {data.comments.length}
           </div>
         </div>
-        <div style={{ display: "flex", marginTop: "10px" }}>
+        <div style={{ display: "flex", marginTop: "30px" }}>
           <p>Tags:&nbsp;</p>
           {data.tags.map((tag) => (
-            <p>
-              <a href={`/tags/${tag}`}>{tag}</a>,&nbsp;
-            </p>
+            <>
+              <a style={{ textDecoration: "none" }} href={`/tags/${tag}`}>
+                <p className="post_tags">{tag}</p>
+              </a>
+            </>
           ))}
         </div>
-        <div style={{ display: "flex", height: "50px" }}>
-          <p style={{ paddingTop: "20px" }}>Share:&nbsp;</p>
+        <div style={{ display: "flex", height: "50px", marginTop: "30px" }}>
+          <p>Share:&nbsp;&nbsp;&nbsp;</p>
           <FacebookShareButton url={window.location.href} quote={data.title}>
-            <FacebookIcon
-              style={{ width: "25px", borderRadius: "5px" }}
-              logoFillColor="white"
+            <FacebookIconUI
+              style={{ color: "#3b5998", transform: "scale(1.5)" }}
+              // logoFillColor="white"
             />
           </FacebookShareButton>
+          <div style={{ marginLeft: "20px" }}>
+            <TwitterShareButton url={window.location.href} title={data.title}>
+              <TwitterIcon
+                style={{
+                  color: "#1DA1F2",
+                  transform: "scale(1.5)",
+                }}
+              />
+            </TwitterShareButton>
+          </div>
         </div>
       </div>
       {addComment()}
-      <h3 style={{ marginBottom: "10px" }}>Comments:</h3>
+      <p style={{ margin: "40px 0px 10px 0px", fontSize: "20px" }}>Comments:</p>
+      {data.comments.length === 0 && (
+        <p style={{ textAlign: "center", fontWeight: "300" }}>
+          There are no comments
+        </p>
+      )}
       {data.comments
         .slice(0)
         .reverse()

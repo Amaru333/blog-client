@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import HomePagePosts from "./HomePagePosts";
 
+import "../styles/Home.css";
+
 function Home() {
   const [data, setData] = useState([]);
 
@@ -14,7 +16,7 @@ function Home() {
   }, []);
 
   return (
-    <div style={{ width: "60%", margin: "auto", marginTop: "50px" }}>
+    <div className="home_container">
       {data.map((item) => (
         <HomePagePosts
           title={item.title}
@@ -24,6 +26,8 @@ function Home() {
           thumbnail={item.thumbnail}
           comments={item.comments}
           id={item._id}
+          likes={item.likes}
+          description={item.description}
         />
       ))}
     </div>

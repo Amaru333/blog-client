@@ -1,8 +1,11 @@
 .post_container {
   font-family: "Poppins", sans-serif;
-  width: 50%;
+  width: 60%;
   margin: auto;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  padding: 5%;
+  padding-top: 2%;
+  background-color: rgb(255, 255, 255);
 }
 
 h1 {
@@ -22,4 +25,46 @@ h1 {
 img {
   max-width: 50vw;
   align-self: center;
+}
+
+.add_comment {
+  border: 1px solid rgba(0, 0, 0, 0.082);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.082);
+  border-radius: 5px;
+  padding: 10px 15px 0px 15px;
+}
+
+.comment_box {
+  border: none;
+  font-size: 16px;
+}
+
+.gray_line {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.082);
+  margin: 10px 0px 10px 0px;
+}
+
+.post_tags {
+  background-color: rgb(1, 13, 128);
+  color: white;
+  margin: 0px 5px 0px 5px;
+  padding: 5px;
+  font-size: 12px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.post_tags:hover {
+  background-color: rgba(1, 14, 128, 0.87);
+}
+
+@media only screen and (max-width: 768px) {
+  .post_container {
+    width: 100%;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
 }

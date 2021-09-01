@@ -37,6 +37,8 @@ function PostTags() {
           thumbnail={item.thumbnail}
           comments={item.comments}
           id={item._id}
+          likes={item.likes}
+          description={item.description}
         />
       ))}
     </div>
